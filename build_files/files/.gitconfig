@@ -1,0 +1,21 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	autoSetupRemote = true
+[alias]
+	cm = commit -m
+	s = status
+	aa = !sh -c 'git add -A && git status'
+	p = push
+	pl = pull
+	c = checkout
+	f = fetch
+	b = branch
+	ds = diff --staged
+	rs = restore --staged
+  purge = "!f() { git remote prune origin; git branch | grep -v \"\\\\*\\\\|main\\\\|master\\\\|develop\" | while read branch; do if ! git ls-remote --exit-code --heads origin \"$branch\" >/dev/null 2>&1; then echo \"Deleting $branch (not on remote)\"; git branch -D \"$branch\"; fi; done; }; f"
+[init]
+	defaultBranch = main
