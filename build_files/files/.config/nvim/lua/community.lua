@@ -1,0 +1,23 @@
+---@type LazySpec
+return {
+  "astroNvim/astrocommunity",
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.terraform" },
+  { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.split-and-window.minimap-vim" },
+  { import = "astrocommunity.workflow.precognition-nvim" },
+  { import = "astrocommunity.motion.mini-surround" },
+  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.bars-and-lines.vim-illuminate" },
+  { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+  { import = "astrocommunity.search.sad-nvim" },
+  { import = "astrocommunity.recipes.auto-session-restore" },
+  { import = "astrocommunity.scrolling.vim-smoothie" },
+  { import = "astrocommunity.indent.indent-rainbowline" },
+}
