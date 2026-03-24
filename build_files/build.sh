@@ -2,23 +2,53 @@
 
 set -ouex pipefail
 
-### Install packages
+SKEL=/etc/skel
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
+# Install repos
+dnf config-manager addrepo -y --from-repofile=https://repo.librewolf.net/librewolf.repo
+dnf config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/beta/mullvad.repo
+dnf -y copr enable dejan/lazygit
+dnf -y copr enable atim/bottom
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+# Enable writing to /opt
+rm /opt
+mkdir /opt
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+# install packages
+dnf install -y \
+  librewolf \
+  keepassxc \
+  mullvad-vpn \
+  ncdu \
+  tealdeer \
+  gamemode \
+  ripgrep \
+  lazygit \
+  nodejs \
+  nodejs-npm \
+  neovim \
+  bottom \
+  jetbrains-mono-fonts
 
-#### Example for enabling a System Unit File
+# neovim setup
+curl -L -o tree-sitter.gz 'https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz'
+gzip -cd tree-sitter.gz > /usr/bin/tree-sitter
+rm -rf tree-sitter.gz
+rm -rf $SKEL/.config/nvim
+git clone --depth 1 https://github.com/AstroNvim/template $SKEL/.config/nvim
+rm -rf ~/.config/nvim/.git
 
-systemctl enable podman.socket
+# SDDM theme
+git clone -b master --depth 1 https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
+cp -r /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
+echo "[Theme]
+Current=sddm-astronaut-theme" | tee /etc/sddm.conf
+echo "[General]
+InputMethod=qtvirtualkeyboard" | tee /etc/sddm.conf.d/virtualkbd.conf
+sed -i 's|ConfigFile=Themes/astronaut.conf|ConfigFile=Themes/black_hole.conf|g' /usr/share/sddm/themes/sddm-astronaut-theme/metadata.desktop
+
+# copy custom config
+cp -rf /ctx/files/.config /ctx/files/.gitconfig $SKEL
+
+# install additional Flatpaks
+flatpak --system -y install --reinstall flathub com.github.iwalton3.jellyfin-media-player dev.vencord.Vesktop
