@@ -28,6 +28,7 @@ dnf install -y \
   nodejs-npm \
   neovim \
   bottom \
+  kitty \
   jetbrains-mono-fonts
 
 # neovim setup
@@ -51,4 +52,4 @@ sed -i 's|ConfigFile=Themes/astronaut.conf|ConfigFile=Themes/black_hole.conf|g' 
 cp -rf /ctx/files/.config /ctx/files/.gitconfig $SKEL
 
 # install additional Flatpaks
-flatpak --system -y install --reinstall flathub com.github.iwalton3.jellyfin-media-player dev.vencord.Vesktop
+flatpak --system -y install --reinstall flathub com.github.iwalton3.jellyfin-media-player
