@@ -29,6 +29,7 @@ dnf install -y \
   neovim \
   bottom \
   kitty \
+  rofi \
   jetbrains-mono-fonts
 
 # neovim setup
