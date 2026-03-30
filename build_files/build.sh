@@ -34,9 +34,8 @@ dnf install -y \
   keyd \
   rust \
   cargo \
+  eza \
   jetbrains-mono-fonts
-
-cargo install eza --root /usr/local/bin
 
 systemctl enable keyd
 
