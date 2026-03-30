@@ -9,6 +9,7 @@ dnf config-manager addrepo -y --from-repofile=https://repo.librewolf.net/librewo
 dnf config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/beta/mullvad.repo
 dnf -y copr enable dejan/lazygit
 dnf -y copr enable atim/bottom
+dnf -y copr enable alternateved/keyd
 
 # Enable writing to /opt
 rm /opt
@@ -30,6 +31,7 @@ dnf install -y \
   bottom \
   kitty \
   rofi \
+  keyd \
   jetbrains-mono-fonts
 
 # neovim setup
