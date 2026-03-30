@@ -32,7 +32,13 @@ dnf install -y \
   kitty \
   rofi \
   keyd \
+  rust \
+  cargo \
   jetbrains-mono-fonts
+
+cargo install eza
+
+systemctl enable keyd
 
 # neovim setup
 curl -L -o tree-sitter.gz 'https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz'
