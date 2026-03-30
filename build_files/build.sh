@@ -36,7 +36,7 @@ dnf install -y \
   cargo \
   jetbrains-mono-fonts
 
-cargo install eza
+cargo install eza --root /usr/local/bin
 
 systemctl enable keyd
 
