@@ -60,4 +60,4 @@ sed -i 's|ConfigFile=Themes/astronaut.conf|ConfigFile=Themes/black_hole.conf|g' 
 cp -rf /ctx/files/.config /ctx/files/.gitconfig $SKEL
 
 # install additional Flatpaks
-flatpak --system -y install --reinstall flathub com.github.iwalton3.jellyfin-media-player
+flatpak --system -y install --reinstall flathub org.jellyfin.JellyfinDesktop
