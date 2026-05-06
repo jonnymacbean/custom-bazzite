@@ -35,7 +35,10 @@ dnf install -y \
   rust \
   cargo \
   eza \
-  jetbrains-mono-fonts
+  jetbrains-mono-fonts \
+  qt6-qtsvg \
+  qt6-qtvirtualkeyboard \
+  qt6-qtmultimedia
 
 systemctl enable keyd
 
@@ -52,6 +55,7 @@ git clone -b master --depth 1 https://github.com/keyitdev/sddm-astronaut-theme.g
 cp -r /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 echo "[Theme]
 Current=sddm-astronaut-theme" | tee /etc/sddm.conf
+touch /etc/sddm.conf.d/virtualkbd.conf
 echo "[General]
 InputMethod=qtvirtualkeyboard" | tee /etc/sddm.conf.d/virtualkbd.conf
 sed -i 's|ConfigFile=Themes/astronaut.conf|ConfigFile=Themes/black_hole.conf|g' /usr/share/sddm/themes/sddm-astronaut-theme/metadata.desktop
